@@ -40,24 +40,34 @@ Now that the frames are linked, you can copy variables from one to the other. To
 
 ### Example
 Consider the following example where we import a dataset, create a new frame in which we collapse the dataset, create and plot a variable of importance, and then merge it back into the main frame. Using frames allows us to not have to save the data in a different file and makes it easy to switch between the main and collapsed versions.
+
 We will first load the sample dataset:
-clear all 
-sysuse nlsw88.dta
+
+          clear all 
+
+          sysuse nlsw88.dta
+
 Now, we will rename default frame:
-frame rename default nlsw
+
+          frame rename default nlsw
+
 We will now create graph of wages by industry. However, in order to do this, we will collapse the data by storing it inside a new frame. Note that the previous dataset will not be lost and we can switch back and forth whenever needed. We do not have to store them as separate dta files and merge them but only switch across different frames.
-frame copy nlsw nlsw_industry_wage
-frame nlsw_industry_wage {             
-keep wage industry
-collapse (mean) wage , by(industry) 
-rename wage av_wage
-graph bar av_wage , over(industry , lab(angle(45))) ///
-graphregion(color(white)) ylab(, angle(0) nogrid)
-}
+
+          frame copy nlsw nlsw_industry_wage
+          frame nlsw_industry_wage {             
+                    keep wage industry
+                    collapse (mean) wage , by(industry) 
+                    rename wage av_wage
+                    graph bar av_wage , over(industry , lab(angle(45))) ///
+                    graphregion(color(white)) ylab(, angle(0) nogrid)
+          }
+
 Now, we will merge the mean industry wage from the collapsed dataset (stored in the new frame) to the original frame, and then use it in an individual level regression-
-frlink m:1 industry , frame(nlsw_industry_wage) 
-frget av_wage , from(nlsw_industry_wage) 
-reg wage union age av_wage
+
+          frlink m:1 industry , frame(nlsw_industry_wage) 
+          frget av_wage , from(nlsw_industry_wage) 
+          reg wage union age av_wage
+
 Frames also have other uses. For example, if you have a dataset containing several variables and only want to work with a few at a time, you can store those variables in a new frame, work with them, and then switch back to the old frame and merge these cleaned variables in from the new one.
 
 
