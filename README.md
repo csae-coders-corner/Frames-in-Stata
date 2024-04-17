@@ -7,7 +7,9 @@ However, there is a fixed cost of learning the syntax, and it can be hard to see
 ## Using frames — the basics
 When you open Stata, you also automatically open a frame, called default. It is important to understand that whenever you’re using Stata you’re working in a frame.
 You can create a new frame called newframename with variables given in varlist using:
+'''
 frame create newframename varlist
+'''
 You can also create a frame by copying an existing frame using frame
 copy existing_frame new_frame
 There are three ways to change which frame you’re working in. To permanently switch to framename use frame
