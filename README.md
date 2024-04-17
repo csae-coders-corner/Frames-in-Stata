@@ -6,24 +6,36 @@ However, there is a fixed cost of learning the syntax, and it can be hard to see
 
 ## Using frames — the basics
 When you open Stata, you also automatically open a frame, called default. It is important to understand that whenever you’re using Stata you’re working in a frame.
+
 You can create a new frame called newframename with variables given in varlist using:
-'''
-frame create newframename varlist
-'''
+
+          frame create newframename varlist
+
 You can also create a frame by copying an existing frame using frame
-copy existing_frame new_frame
+
+          copy existing_frame new_frame
+
 There are three ways to change which frame you’re working in. To permanently switch to framename use frame
-change framename
+
+          change framename
+
 To execute a command on data in framename use frame 
-framename : command
+
+          framename : command
+
 To execute a block of code on data in framename use
-frame framename { 
+
+          frame framename { 
           commands
-}
+          }
+
 You can also make links between frames in a similar fashion to how you would merge datasets. To link the existing frame to a new frame use
-frlink 1:1 link_variable , frame(link_frame)
+
+          frlink 1:1 link_variable , frame(link_frame)
+
 Now that the frames are linked, you can copy variables from one to the other. To copy newvar from link frame to the current active frame use:
-frget newvar , from(link_frame)
+
+          frget newvar , from(link_frame)
 
 
 ### Example
