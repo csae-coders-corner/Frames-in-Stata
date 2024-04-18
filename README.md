@@ -1,3 +1,5 @@
+![CC Graphics 2024_Framesinstata](https://github.com/csae-coders-corner/Frames-in-Stata/assets/148211163/4a19b3b8-21d4-49e0-b5f6-8bd23c25c69d)
+
 # Frames-in-Stata
 
 Frames represent a complete shift in how one thinks about coding in Stata. They allow you to seamlessly work with multiple datasets at the same time. Instead of just holding one dataset in memory, Stata will now hold multiple frames in memory. This allows you to work with a large number of variables at the same time while still remaining below the upper limit and not having to store them in different datasets on your computer. It can be incredibly useful in streamlining existing work as well as opening opportunities for working in more efficient but previously not possible ways. This feature was added in Stata 16.
